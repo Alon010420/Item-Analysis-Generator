@@ -33,12 +33,19 @@
   .input-section h2::before { content:''; position:absolute; left:0; top:6px; bottom:6px; width:4px; background:linear-gradient(180deg,var(--accent),var(--accent-dark)); border-radius:2px; }
   .input-section .hint { font-size:12.5px; color:var(--text-light); margin-bottom:12px; padding-left:14px; }
   .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media (max-width:700px) { .grid-2 { grid-template-columns:1fr; } }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  @media (max-width:700px) { .grid-2, .grid-3 { grid-template-columns:1fr; } }
   .field { display:flex; flex-direction:column; gap:5px; }
   .field label { font-size:11px; font-weight:600; color:var(--text-light); text-transform:uppercase; letter-spacing:1px; }
   .field input { padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-family:inherit; color:var(--text); background:#fafbfd; transition:all 0.2s; }
   .field input:focus { outline:none; border-color:var(--primary-light); background:#fff; box-shadow:0 0 0 3px rgba(44,95,138,0.1); }
   .field input.error { border-color:var(--danger); background:#fff5f4; }
+  
+  .file-upload-wrap { display: flex; gap: 8px; align-items: stretch; }
+  .file-upload-wrap input[type="file"] { flex: 1; padding: 8px; cursor: pointer; background: #fff; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px;}
+  .btn-remove-logo { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; padding: 0 12px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; font-size: 12px;}
+  .btn-remove-logo:hover { background: #fecaca; }
+
   textarea { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; font-size:13.5px; font-family:'Inter',monospace; color:var(--text); background:#fafbfd; resize:vertical; transition:all 0.2s; line-height:1.6; }
   textarea:focus { outline:none; border-color:var(--primary-light); background:#fff; box-shadow:0 0 0 3px rgba(44,95,138,0.1); }
   textarea.error { border-color:var(--danger); background:#fff5f4; }
@@ -74,20 +81,25 @@
   .paper-size-wrap select { padding:6px 10px; border:1.5px solid var(--border); border-radius:6px; font-size:13px; font-family:inherit; font-weight:600; color:var(--primary); background:#fff; cursor:pointer; outline:none; }
 
   .container { max-width:1200px; margin:0 auto; background:var(--card); border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.1); overflow:hidden; margin-bottom: 30px; }
-  .hero { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 60%,#3a7ca5 100%); padding:50px 50px 40px; color:#fff; position:relative; overflow:hidden; }
+  .hero { background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 60%,#3a7ca5 100%); padding:30px 50px 40px; color:#fff; position:relative; overflow:hidden; }
   .hero::before { content:''; position:absolute; top:-50%; right:-10%; width:500px; height:500px; background:radial-gradient(circle,rgba(232,168,56,0.15) 0%,transparent 70%); border-radius:50%; }
   .hero-content { position:relative; z-index:2; }
-  .hero .school-name { font-size:13px; letter-spacing:3px; text-transform:uppercase; opacity:0.9; margin-bottom:3px; font-weight:500; }
-  .hero .school-sub { font-size:12px; opacity:0.7; letter-spacing:1px; margin-bottom:2px; }
-  .hero .school-name-main { font-size:18px; font-weight:800; letter-spacing:0.5px; margin:15px 0 3px; color:var(--accent); }
-  .hero .school-address { font-size:12px; opacity:0.75; letter-spacing:0.5px; margin-bottom:25px; }
-  .hero h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:900; line-height:1.15; margin-bottom:10px; letter-spacing:-0.5px; }
+  
+  .logo-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .logo-box { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+  .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  .hero .school-name { font-size:13px; letter-spacing:3px; text-transform:uppercase; opacity:0.9; margin-bottom:3px; font-weight:500; text-align:center; }
+  .hero .school-sub { font-size:12px; opacity:0.7; letter-spacing:1px; margin-bottom:2px; text-align:center; }
+  .hero .school-name-main { font-size:18px; font-weight:800; letter-spacing:0.5px; margin:15px 0 3px; color:var(--accent); text-align:center; }
+  .hero .school-address { font-size:12px; opacity:0.75; letter-spacing:0.5px; margin-bottom:25px; text-align:center; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:38px; font-weight:900; line-height:1.15; margin-bottom:10px; letter-spacing:-0.5px; text-align:center; }
   .hero h1 .gold { color:var(--accent); }
-  .hero .subtitle { font-size:16px; opacity:0.9; font-weight:300; margin-bottom:30px; }
-  .hero-meta { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; }
+  .hero .subtitle { font-size:16px; opacity:0.9; font-weight:300; margin-bottom:20px; text-align:center; }
+  .hero-meta { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; justify-content:center; }
   .meta-chip { background:rgba(255,255,255,0.12); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2); padding:8px 18px; border-radius:30px; font-size:13px; font-weight:500; display:flex; align-items:center; gap:8px; }
   .meta-chip .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
-  .teacher-badge { display:inline-block; background:rgba(232,168,56,0.15); border:1px solid rgba(232,168,56,0.4); padding:6px 16px; border-radius:20px; font-size:12px; font-weight:600; color:var(--accent); letter-spacing:1px; text-transform:uppercase; margin-top:20px; }
+  .teacher-badge { display:block; width:max-content; margin: 20px auto 0; background:rgba(232,168,56,0.15); border:1px solid rgba(232,168,56,0.4); padding:6px 16px; border-radius:20px; font-size:12px; font-weight:600; color:var(--accent); letter-spacing:1px; text-transform:uppercase; }
   
   .content { padding:40px 50px 50px; }
   .section-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:900; color:var(--primary); margin:45px 0 8px; position:relative; padding-left:20px; }
@@ -95,10 +107,9 @@
   .section-sub { font-size:13px; color:var(--text-light); margin-bottom:25px; padding-left:20px; text-transform:uppercase; letter-spacing:1.5px; font-weight:500; }
   .section-title:first-of-type { margin-top:0; }
   
-  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:16px; margin-bottom:30px; }
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-bottom:30px; }
   .stat-card { background:linear-gradient(135deg,#f8fafc,#eef3f8); border:1px solid var(--border); border-radius:14px; padding:20px 18px; position:relative; transition:all 0.3s ease; overflow:hidden; }
   .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--primary),var(--accent)); }
-  .stat-card:hover { transform:translateY(-3px); box-shadow:0 10px 25px rgba(26,58,92,0.12); }
   .stat-card .label { font-size:11px; color:var(--text-light); text-transform:uppercase; letter-spacing:1.2px; font-weight:600; margin-bottom:8px; }
   .stat-card .value { font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--primary); line-height:1; }
   .stat-card .unit { font-size:14px; color:var(--text-light); font-weight:400; margin-left:2px; }
@@ -140,9 +151,9 @@
   .badge-green { background:#d5f5e3; color:#1e8449; }
   .badge-red { background:#fadbd8; color:#c0392b; }
 
-  table { width:100%; border-collapse:separate; border-spacing:0; margin-bottom:25px; font-size:13px; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
-  thead th { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; padding:14px 12px; text-align:left; font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.8px; }
-  tbody td { padding:11px 12px; border-bottom:1px solid var(--border); background:#fff; }
+  table { width:100%; border-collapse:separate; border-spacing:0; margin-bottom:25px; font-size:12px; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+  thead th { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; padding:12px 10px; text-align:left; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; }
+  tbody td { padding:10px 10px; border-bottom:1px solid var(--border); background:#fff; }
   tbody tr:last-child td { border-bottom:none; }
   tbody tr:nth-child(even) td { background:#fafbfd; }
   tbody tr:hover td { background:#eef5fb; }
@@ -180,11 +191,13 @@
   .rec-card .rec-num { display:inline-block; width:24px; height:24px; background:var(--primary); color:#fff; border-radius:50%; text-align:center; line-height:24px; font-size:11px; font-weight:700; margin-right:8px; }
   .rec-card .rec-text { font-size:13px; color:var(--text); font-weight:500; }
   .rec-card .rec-text strong { color:var(--primary); }
-  
-  .footer { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; padding:30px 50px; text-align:center; font-size:12px; }
-  .footer .prepared { font-size:16px; font-weight:700; margin-bottom:5px; letter-spacing:0.5px; }
-  .footer .role { font-size:12px; opacity:0.7; text-transform:uppercase; letter-spacing:2px; margin-bottom:15px; }
-  .footer .divider { width:60px; height:3px; background:var(--accent); margin:15px auto; border-radius:2px; }
+
+  .footer { background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; padding:40px 50px; font-size:12px; }
+  .signature-grid { display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px; text-align:center; }
+  .sig-block { flex:1; min-width:200px; }
+  .sig-title { font-size:11px; opacity:0.8; text-transform:uppercase; letter-spacing:2px; margin-bottom:25px; }
+  .sig-name { font-size:16px; font-weight:700; letter-spacing:0.5px; border-bottom:2px solid var(--accent); padding-bottom:5px; display:inline-block; margin-bottom:5px; text-transform:uppercase; }
+  .sig-role { font-size:12px; opacity:0.9; }
   
   .empty-chart { background:#fafbfd; border:2px dashed var(--border); border-radius:12px; padding:40px 20px; text-align:center; }
   .empty-chart .empty-icon { font-size:36px; opacity:0.4; margin-bottom:10px; }
@@ -204,20 +217,95 @@
 
   .page-break { page-break-before: always; }
 
+  /* --- PRINT STYLES (BLUE BACKGROUND + NO CUT-OFF) --- */
   @media print {
-    body { background:#fff; padding:0; }
-    .toolbar, .help-toggle, .paper-size-wrap, .toast-container { display:none !important; }
-    .container { box-shadow:none; border-radius:0; max-width:100%; margin-bottom: 0; }
-    .hero { padding:30px 40px; } .hero h1 { font-size:30px; }
-    .content { padding:30px 40px; }
-    .stat-card:hover, .rec-card:hover { transform:none; box-shadow:none; }
-    .section-title { page-break-after:avoid; }
-    table { page-break-inside:auto; }
-    tr { page-break-inside:avoid; }
-    thead { display:table-header-group; }
-    .chart-row { page-break-inside:avoid; }
-    .mps-container, .student-table-wrapper { page-break-inside:avoid; }
-    .page-break { display: block; }
+    @page { margin: 10mm; }
+    body { 
+      background: #fff !important; 
+      padding: 0 !important; 
+      -webkit-print-color-adjust: exact !important; 
+      print-color-adjust: exact !important; 
+    }
+    
+    .container { 
+      box-shadow: none !important; 
+      border-radius: 0 !important; 
+      max-width: 100% !important; 
+      margin-bottom: 0 !important; 
+      overflow: visible !important; 
+      border: none !important; 
+    }
+    .content { padding: 20px 30px !important; }
+    
+    .toolbar, .help-toggle, .paper-size-wrap, .toast-container { display: none !important; }
+    
+    /* HERO: Ibalik ang asul na background */
+    .hero { 
+      background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 60%, #3a7ca5 100%) !important; 
+      color: #fff !important; 
+      padding: 20px 30px 30px !important; 
+      border-radius: 0 !important;
+      border-bottom: none !important;
+    }
+    .hero::before { display: none !important; }
+    
+    .hero .school-name, .hero .school-sub, .hero .school-address { color: rgba(255, 255, 255, 0.8) !important; }
+    .hero .school-name-main { color: #e8a838 !important; }
+    .hero h1 { color: #fff !important; font-size: 28px !important; }
+    .hero h1 .gold { color: #e8a838 !important; }
+    .hero .subtitle { color: rgba(255, 255, 255, 0.9) !important; }
+    .hero .meta-chip { background: rgba(255, 255, 255, 0.15) !important; border: 1px solid rgba(255, 255, 255, 0.3) !important; color: #fff !important; }
+    .hero .teacher-badge { background: rgba(232, 168, 56, 0.2) !important; border: 1px solid rgba(232, 168, 56, 0.5) !important; color: #e8a838 !important; }
+    
+    .logo-box { width: 60px; height: 60px; }
+    
+    /* FOOTER: Ibalik ang asul na background */
+    .footer { 
+      background: linear-gradient(135deg, #1a3a5c, #2c5f8a) !important; 
+      color: #fff !important; 
+      padding: 20px 30px !important; 
+      border-radius: 0 !important;
+      border-top: none !important;
+    }
+    .footer .sig-name { color: #fff !important; border-bottom: 2px solid #e8a838 !important; }
+    .footer .sig-title, .footer .sig-role { color: rgba(255, 255, 255, 0.8) !important; }
+    
+    /* --- FIX CUT-OFFS (PAGE BREAKS) --- */
+    .chart-card, .chart-row, .mps-container, .stat-grid, .donut-wrapper, .footer {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    
+    .section-title {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    
+    /* --- FIX STUDENT ROSTER CUT-OFF --- */
+    .student-table-wrapper { 
+      max-height: none !important; 
+      height: auto !important;
+      overflow: visible !important; 
+      display: block !important;
+      border: 1px solid #ccc !important; 
+    }
+    .student-table th { 
+      position: static !important; /* This forces the sticky header to behave normally and not cut off rows */
+      background: #1a3a5c !important; 
+      color: #fff !important;
+    }
+    
+    table { page-break-inside: auto !important; }
+    tr { page-break-inside: avoid !important; break-inside: avoid !important; }
+    thead { display: table-header-group !important; }
+
+    .student-table td, table td { border: 1px solid #ccc !important; }
+    
+    /* Stat Cards */
+    .stat-card { border: 1px solid #ccc !important; }
+    
+    /* Page Breaks */
+    .page-break { display: block; page-break-before: always; height: 0; margin: 0; border: none; }
   }
 
   .help-toggle { position:fixed; bottom:20px; right:20px; width:50px; height:50px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; font-size:22px; font-weight:700; box-shadow:0 6px 20px rgba(26,58,92,0.3); z-index:200; border:none; cursor:pointer; }
@@ -239,7 +327,7 @@
   <div class="input-container">
     <div class="input-header">
       <h1>MPS & Item Analysis Generator</h1>
-      <p>Separate pages for MPS and Item Analysis. Auto-Divide included!</p>
+      <p>Complete with Logo Upload, Signatures, and Color Print Output.</p>
       <div class="dev-credit-input">
         <span class="dev-label">Project Developer</span>
         <span class="dev-name">JEMMUEL ALON</span>
@@ -249,7 +337,6 @@
 
       <div class="input-section">
         <h2>1. Piliin ang Report Type</h2>
-        <p class="hint">Anong report ang gusto mong i-generate?</p>
         <div class="mode-selector">
           <div class="mode-card active" data-mode="both" onclick="setMode('both')">
             <h3>📑 Both (MPS + Item)</h3>
@@ -281,28 +368,63 @@
       </div>
 
       <div class="input-section">
-        <h2>3. Exam Info</h2>
-        <div class="grid-2">
+        <h2>3. Exam Info & Logos</h2>
+        <div class="grid-3">
           <div class="field"><label>Total Items</label><input id="f_totalItems" type="number" value="50" min="1"></div>
           <div class="field"><label>Passing Score</label><input id="f_passing" type="number" value="25" min="0"></div>
+          <div class="field"><label>Date Conducted</label><input id="f_date" value="September 17, 2026"></div>
+        </div>
+        
+        <div class="grid-3" style="margin-top:15px;">
+          <div class="field">
+            <label>Upload Logo 1 (Left)</label>
+            <div class="file-upload-wrap">
+              <input type="file" id="f_logo1" accept="image/*" onchange="handleLogoUpload(this, 1)">
+              <button type="button" class="btn-remove-logo" onclick="removeLogo(1)" title="Remove Logo">✖</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Upload Logo 2 (Center)</label>
+            <div class="file-upload-wrap">
+              <input type="file" id="f_logo2" accept="image/*" onchange="handleLogoUpload(this, 2)">
+              <button type="button" class="btn-remove-logo" onclick="removeLogo(2)" title="Remove Logo">✖</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Upload Logo 3 (Right)</label>
+            <div class="file-upload-wrap">
+              <input type="file" id="f_logo3" accept="image/*" onchange="handleLogoUpload(this, 3)">
+              <button type="button" class="btn-remove-logo" onclick="removeLogo(3)" title="Remove Logo">✖</button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- MPS DATA -->
+      <div class="input-section">
+        <h2>4. Signatories</h2>
+        <p class="hint">I-type ang pangalan at position para sa footer.</p>
+        <div class="grid-2">
+          <div class="field"><label>Prepared by (Name)</label><input id="f_prep_name" placeholder="JEMMUEL A. ALON"></div>
+          <div class="field"><label>Prepared by (Role)</label><input id="f_prep_role" placeholder="Subject Teacher"></div>
+          <div class="field"><label>Checked by (Name)</label><input id="f_check_name" placeholder="JUAN DELA CRUZ"></div>
+          <div class="field"><label>Checked by (Role)</label><input id="f_check_role" placeholder="Master Teacher I"></div>
+          <div class="field"><label>Approved by (Name)</label><input id="f_appr_name" placeholder="MARIA CLARA"></div>
+          <div class="field"><label>Approved by (Role)</label><input id="f_appr_role" placeholder="Principal II"></div>
+        </div>
+      </div>
+
       <div class="input-section" id="mpsDataSection">
-        <h2>4. MPS Data (Student Names &amp; Scores)</h2>
+        <h2>5. MPS Data (Student Names &amp; Scores)</h2>
         <p class="hint">
           <strong>Format: Pangalan, Score</strong> (isang estudyante kada linya).<br>
-          <code>ALBERO, KYLE, ONTIC, 50</code><br>
-          <em>(Pwede ring number lang kung walang pangalan: <code>45</code>)</em>
+          <code>ALBERO, KYLE, ONTIC, 50</code>
         </p>
         <textarea id="f_scores" rows="8" placeholder="ALBERO, KYLE, ONTIC, 50&#10;BACOMO, CHRISTIAN, FUERTE, 48&#10;..."></textarea>
         <div class="counter" id="c_scores">Students: 0</div>
       </div>
 
-      <!-- ITEM ANALYSIS DATA -->
       <div class="input-section" id="itemDataSection">
-        <h2>5. Item Analysis Data (Items &amp; Correct Counts)</h2>
+        <h2>6. Item Analysis Data</h2>
         <p class="hint">
           <strong>Format: Topic, Bilang ng Tama</strong> (isang item kada linya).<br>
           <code>Digestive tract organ, 25</code>
@@ -310,13 +432,9 @@
         <textarea id="f_items" rows="8" placeholder="Digestive tract organ, 25&#10;Digestive process, 29&#10;..."></textarea>
         <div class="counter" id="c_items">Items: 0</div>
         
-        <!-- AUTO-DIVIDE BUTTON -->
         <button class="btn-accent" onclick="autoDivideItems()">
           ⚡ Auto-Divide Items (Kung walang per-item record)
         </button>
-        <p style="font-size:11px; color:#7f8c8d; margin-top:8px; text-align:center; font-style:italic;">
-          *I-click ito kung total score lang ang na-record mo. Awtomatikong hahatiin ng system ang total points sa lahat ng items para makabuo ng estimation.
-        </p>
       </div>
 
       <div class="btn-row">
@@ -337,7 +455,7 @@
       <select id="paperSize" onchange="changePaperSize(this.value)">
         <option value="A4">A4 (210 × 297 mm)</option>
         <option value="Letter">Letter / Short (8.5 × 11 in)</option>
-        <option value="Folio">Long / Folio (8.5 × 13 in)</option>
+        <option value="Folio">F4 / Long (8.5 × 13 in)</option>
         <option value="Legal">Legal (8.5 × 14 in)</option>
         <option value="A3">A3 (297 × 420 mm)</option>
         <option value="A5">A5 (148 × 210 mm)</option>
@@ -355,14 +473,17 @@
 <div class="help-modal" id="helpModal">
   <div class="help-content">
     <h3>📖 Paano Gamitin</h3>
-    <p>Ngayon, <strong>hiwalay na</strong> ang data ng MPS at Item Analysis. May Auto-Divide feature pa!</p>
-    <h4>Auto-Divide Items</h4>
-    <p>Kung hindi mo na-tally ang bawat item, i-click ito. Kukunin ng system ang total score ng lahat ng estudyante at ipapamahagi ito nang pantay-pantay sa lahat ng items.</p>
+    <p>Pwede nang mag-upload at mag-delete ng Logos!</p>
+    <h4>Logo Upload</h4>
+    <p>I-click ang "Choose File" at piliin ang logo sa iyong computer. Kung gusto mong tanggalin, i-click lang ang pulang "✖" button sa tabi nito.</p>
     <button class="close-btn" onclick="toggleHelp()">Got it!</button>
   </div>
 </div>
 
 <script>
+// Variables for Logos (Base64 storage)
+let logoData = { logo1: '', logo2: '', logo3: '' };
+
 function showToast(message, type = 'info', duration = 4000) {
   try {
     const container = document.getElementById('toastContainer');
@@ -376,6 +497,36 @@ function showToast(message, type = 'info', duration = 4000) {
       setTimeout(() => { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
     }, duration);
   } catch (e) { console.log('Toast error:', e); }
+}
+
+function handleLogoUpload(input, num) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 200;
+        const scale = MAX_WIDTH / img.width;
+        canvas.width = MAX_WIDTH;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        logoData['logo' + num] = canvas.toDataURL('image/png');
+        saveData();
+        showToast(`<strong>Logo ${num} uploaded!</strong>`, 'success', 3000);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function removeLogo(num) {
+  logoData['logo' + num] = '';
+  document.getElementById('f_logo' + num).value = '';
+  saveData();
+  showToast(`<strong>Logo ${num} removed!</strong>`, 'info', 3000);
 }
 
 let currentMode = 'both';
@@ -424,7 +575,6 @@ function parseItemsWithCount(text) {
   }).filter(Boolean);
 }
 
-/* NEW FUNCTION: AUTO-DIVIDE ITEMS */
 function autoDivideItems() {
   try {
     const scoresRaw = document.getElementById('f_scores').value.trim();
@@ -433,7 +583,7 @@ function autoDivideItems() {
     const itemsRaw = document.getElementById('f_items').value.trim();
 
     if (!students.length) {
-      showToast('<strong>Walang Student Data!</strong> Mag-input muna ng scores sa Section 4 para may pagbatayan ang auto-divide.', 'error', 5000);
+      showToast('<strong>Walang Student Data!</strong> Mag-input muna ng scores sa Section 5.', 'error', 5000);
       return;
     }
     if (isNaN(totalItems) || totalItems < 1) {
@@ -441,10 +591,7 @@ function autoDivideItems() {
       return;
     }
 
-    // Get total score
     const totalScore = students.reduce((sum, s) => sum + s.score, 0);
-    
-    // Calculate base correct per item and remainder
     const baseCorrect = Math.floor(totalScore / totalItems);
     const remainder = totalScore % totalItems;
 
@@ -454,10 +601,8 @@ function autoDivideItems() {
       else correctCounts.push(baseCorrect);
     }
 
-    // Shuffle to make it look more realistic (hindi puro 15 sa taas at 16 sa baba)
     correctCounts.sort(() => Math.random() - 0.5);
 
-    // Get existing topics or generate default
     let topics = [];
     if (itemsRaw) {
       topics = itemsRaw.split('\n').map(l => l.trim()).filter(l => l).map(l => {
@@ -468,18 +613,15 @@ function autoDivideItems() {
 
     let newItemsText = [];
     for (let i = 0; i < totalItems; i++) {
-      let topicName = topics[i] || `Item ${i + 1}`;
+      let topicName = topics[i] || `Topic ${i + 1}`;
       newItemsText.push(`${topicName}, ${correctCounts[i]}`);
     }
 
     document.getElementById('f_items').value = newItemsText.join('\n');
     updateCounters();
     saveData();
-    
-    showToast(`<strong>Auto-Divide Complete!</strong> Total points (${totalScore}) distributed evenly across ${totalItems} items.`, 'success', 5000);
-  } catch (e) {
-    console.error('autoDivide error:', e);
-  }
+    showToast(`<strong>Auto-Divide Complete!</strong>`, 'success', 5000);
+  } catch (e) { console.error('autoDivide error:', e); }
 }
 
 function computeStats(scores) {
@@ -506,11 +648,25 @@ function computeMastery(items, totalStudents) {
     const correct = Math.min(Math.max(item.correct, 0), totalStudents || 1);
     const errors = (totalStudents || 1) - correct;
     const pct = totalStudents > 0 ? (correct / totalStudents) * 100 : 0;
-    let remark, rowClass, badgeClass;
-    if (pct >= 75) { remark = 'Mastered'; rowClass = 'row-mastered'; badgeClass = 'badge-green'; }
-    else if (pct >= 50) { remark = 'Least Mastered'; rowClass = 'row-least'; badgeClass = 'badge-yellow'; }
-    else { remark = 'Not Mastered'; rowClass = 'row-not'; badgeClass = 'badge-red'; }
-    return { index: i + 1, topic: item.topic, errors, correct, pct, remark, rowClass, badgeClass };
+    let remark, rowClass, badgeClass, intervention;
+    
+    if (pct >= 75) { 
+      remark = 'Mastered'; 
+      rowClass = 'row-mastered'; 
+      badgeClass = 'badge-green'; 
+      intervention = 'None needed / Maintain'; 
+    } else if (pct >= 50) { 
+      remark = 'Least Mastered'; 
+      rowClass = 'row-least'; 
+      badgeClass = 'badge-yellow'; 
+      intervention = 'Re-teaching / Guided practice'; 
+    } else { 
+      remark = 'Not Mastered'; 
+      rowClass = 'row-not'; 
+      badgeClass = 'badge-red'; 
+      intervention = 'Urgent remediation / Focus group'; 
+    }
+    return { index: i + 1, topic: item.topic, errors, correct, pct, remark, rowClass, badgeClass, intervention };
   });
 }
 
@@ -592,6 +748,13 @@ function generateReport() {
       class: (document.getElementById('f_class').value.trim() || 'Grade & Section'),
       subject: (document.getElementById('f_subject').value.trim() || 'Subject'),
       term: (document.getElementById('f_term').value.trim() || 'Term'),
+      date: (document.getElementById('f_date').value.trim() || 'Date'),
+      prep_name: (document.getElementById('f_prep_name').value.trim() || 'Teacher'),
+      prep_role: (document.getElementById('f_prep_role').value.trim() || 'Subject Teacher'),
+      check_name: document.getElementById('f_check_name').value.trim(),
+      check_role: document.getElementById('f_check_role').value.trim(),
+      appr_name: document.getElementById('f_appr_name').value.trim(),
+      appr_role: document.getElementById('f_appr_role').value.trim(),
       totalItems: validation.totalItems,
       passing: parseInt(document.getElementById('f_passing').value),
       mode: currentMode
@@ -655,9 +818,16 @@ function buildReportHTML(d) {
   const isMps = d.data.mode === 'mps' || d.data.mode === 'both';
   const isItem = d.data.mode === 'item' || d.data.mode === 'both';
 
+  const logoHtml = (url) => url ? `<img src="${url}" alt="Logo" onerror="this.style.display='none'">` : '';
+
   const heroHTML = `
     <div class="hero">
       <div class="hero-content">
+        <div class="logo-row">
+          <div class="logo-box">${logoHtml(logoData.logo1)}</div>
+          <div class="logo-box">${logoHtml(logoData.logo2)}</div>
+          <div class="logo-box">${logoHtml(logoData.logo3)}</div>
+        </div>
         <div class="school-name">Republic of the Philippines</div>
         <div class="school-sub">Department of Education · ${esc(d.data.region)}</div>
         <div class="school-sub">${esc(d.data.division)}</div>
@@ -670,6 +840,7 @@ function buildReportHTML(d) {
           <div class="meta-chip"><span class="dot"></span> ${d.totalStudents} Students</div>
           <div class="meta-chip"><span class="dot"></span> ${totalItems} Items</div>
           <div class="meta-chip"><span class="dot"></span> Passing: ${d.data.passing}/${totalItems}</div>
+          <div class="meta-chip"><span class="dot"></span> Date: ${esc(d.data.date)}</div>
         </div>
         <div class="teacher-badge">Teacher: ${esc(d.data.teacher)}</div>
       </div>
@@ -688,7 +859,6 @@ function buildReportHTML(d) {
         <div class="stat-card highlight-gold"><div class="label">Highest</div><div class="value">${d.stats.highest}</div></div>
         <div class="stat-card highlight-red"><div class="label">Lowest</div><div class="value">${d.stats.lowest}</div></div>
         <div class="stat-card"><div class="label">Std. Deviation</div><div class="value">${fmt2(d.stats.sd)}</div></div>
-        <div class="stat-card"><div class="label">Range</div><div class="value">${d.stats.range}</div></div>
       </div>
     `;
 
@@ -739,7 +909,7 @@ function buildReportHTML(d) {
           <div class="legend">
             <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div><div class="name">Passed (≥${d.data.passing})</div><div class="val">${d.passed}</div></div>
             <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div><div class="name">Failed (&lt;${d.data.passing})</div><div class="val">${d.failed}</div></div>
-            <div class="legend-item" style="margin-top:15px; border-top:1px solid #eee; padding-top:10px;">
+            <div class="legend-item" style="margin-top:10px; border-top:1px solid #eee; padding-top:8px;">
               <div class="name" style="font-weight:600;">Total Students</div><div class="val">${d.totalStudents}</div>
             </div>
           </div>
@@ -778,13 +948,6 @@ function buildReportHTML(d) {
           ${studentRosterHTML}
           <div class="chart-row">${donutPassFail}${scoreDistHTML}</div>
         </div>
-        <div class="footer">
-          <div class="prepared">${esc(d.data.teacher).toUpperCase()}</div>
-          <div class="role">Teacher</div>
-          <div class="divider"></div>
-          <div>${esc(d.data.school)}</div>
-          <div style="opacity:0.7; margin-top:5px;">MPS Report</div>
-        </div>
       </div>
     `;
   }
@@ -794,6 +957,15 @@ function buildReportHTML(d) {
     const mPct = (n) => (n / totalItems) * 100;
     const mEnd1 = mPct(d.mastered);
     const mEnd2 = mEnd1 + mPct(d.leastMastered);
+
+    const masteryStatsHTML = `
+      <div class="stat-grid">
+        <div class="stat-card highlight-green"><div class="label">Mastered</div><div class="value">${d.mastered}<span class="unit">Items</span></div></div>
+        <div class="stat-card highlight-gold"><div class="label">Least Mastered</div><div class="value">${d.leastMastered}<span class="unit">Items</span></div></div>
+        <div class="stat-card highlight-red"><div class="label">Not Mastered</div><div class="value">${d.notMastered}<span class="unit">Items</span></div></div>
+        <div class="stat-card highlight-blue"><div class="label">Total Items</div><div class="value">${totalItems}</div></div>
+      </div>
+    `;
 
     const masteryDonut = `
       <div class="chart-card">
@@ -831,10 +1003,12 @@ function buildReportHTML(d) {
 
     const tableRows = d.mastery.map(m => `
       <tr class="${m.rowClass}">
-        <td>${m.index}</td><td>${esc(m.topic)}</td>
-        <td class="center">${m.errors}</td><td class="center">${m.correct}</td>
+        <td>${m.index}</td>
+        <td>${esc(m.topic)}</td>
+        <td class="center">${m.correct}</td>
         <td class="center">${fmt2(m.pct)}%</td>
-        <td class="center"><span class="badge ${m.badgeClass}">${m.remark}</span></td>
+        <td class="center"><strong>${m.remark}</strong></td>
+        <td class="center" style="font-size:11px;">${m.intervention}</td>
       </tr>
     `).join('');
 
@@ -843,37 +1017,59 @@ function buildReportHTML(d) {
         ${heroHTML}
         <div class="content">
           <div class="section-title">Item Analysis</div>
-          <div class="section-sub">Item Mastery Levels</div>
+          <div class="section-sub">Item Mastery Levels &amp; Graphs</div>
+          
+          ${masteryStatsHTML}
           <div class="chart-row">${masteryDonut}${hardestHTML}</div>
+          
+          <div class="section-title">Full Item Details</div>
+          <div class="section-sub">Complete Breakdown</div>
           <table>
             <thead><tr>
-              <th>Item</th><th>Topic / Skill Tested</th>
-              <th class="center">Errors</th><th class="center">Correct</th>
-              <th class="center">% Mastery</th><th class="center">Remarks</th>
+              <th>Item No.</th><th>Topic / Skill Tested</th>
+              <th class="center">Tally / Correct</th>
+              <th class="center">% Correct</th>
+              <th class="center">Remarks</th>
+              <th class="center">Identified Intervention</th>
             </tr></thead>
             <tbody>${tableRows}</tbody>
           </table>
-          <div class="section-title">Recommendations</div>
-          <div class="section-sub">Action Plan</div>
-          ${buildRecommendations(d)}
-        </div>
-        <div class="footer">
-          <div class="prepared">${esc(d.data.teacher).toUpperCase()}</div>
-          <div class="role">Teacher</div>
-          <div class="divider"></div>
-          <div>${esc(d.data.school)}</div>
-          <div style="opacity:0.7; margin-top:5px;">Item Analysis Report</div>
         </div>
       </div>
     `;
   }
 
+  // Shared Footer for Signatures
+  const footerHTML = `
+    <div class="footer">
+      <div class="signature-grid">
+        <div class="sig-block">
+          <div class="sig-title">Prepared by:</div>
+          <div class="sig-name">${esc(d.data.prep_name).toUpperCase()}</div>
+          <div class="sig-role">${esc(d.data.prep_role)}</div>
+        </div>
+        ${d.data.check_name ? `
+        <div class="sig-block">
+          <div class="sig-title">Checked by:</div>
+          <div class="sig-name">${esc(d.data.check_name).toUpperCase()}</div>
+          <div class="sig-role">${esc(d.data.check_role)}</div>
+        </div>` : ''}
+        ${d.data.appr_name ? `
+        <div class="sig-block">
+          <div class="sig-title">Approved by:</div>
+          <div class="sig-name">${esc(d.data.appr_name).toUpperCase()}</div>
+          <div class="sig-role">${esc(d.data.appr_role)}</div>
+        </div>` : ''}
+      </div>
+    </div>
+  `;
+
   if (isMps && isItem) {
-    return mpsReportHTML + '<div class="page-break"></div>' + itemReportHTML;
+    return mpsReportHTML + footerHTML + '<div class="page-break"></div>' + itemReportHTML + footerHTML;
   } else if (isMps) {
-    return mpsReportHTML;
+    return mpsReportHTML + footerHTML;
   } else {
-    return itemReportHTML;
+    return itemReportHTML + footerHTML;
   }
 }
 
@@ -956,6 +1152,10 @@ function clearAll() {
   document.getElementById('f_items').value = '';
   document.getElementById('f_teacher').value = '';
   document.getElementById('f_class').value = '';
+  document.getElementById('f_prep_name').value = '';
+  document.getElementById('f_check_name').value = '';
+  document.getElementById('f_appr_name').value = '';
+  removeLogo(1); removeLogo(2); removeLogo(3); // Clear logos safely
   clearErrors(); updateCounters(); saveData();
   showToast('Na-clear na lahat ng data.', 'info', 2500);
 }
@@ -967,6 +1167,14 @@ function loadSample() {
   document.getElementById('f_term').value = 'First Term';
   document.getElementById('f_passing').value = 28;
   document.getElementById('f_totalItems').value = 50;
+  document.getElementById('f_date').value = 'September 17, 2026';
+  
+  document.getElementById('f_prep_name').value = 'JEMMUEL A. ALON';
+  document.getElementById('f_prep_role').value = 'Subject Teacher';
+  document.getElementById('f_check_name').value = 'JUAN DELA CRUZ';
+  document.getElementById('f_check_role').value = 'Master Teacher I';
+  document.getElementById('f_appr_name').value = 'MARIA CLARA';
+  document.getElementById('f_appr_role').value = 'Principal II';
 
   const sampleData = [
     "Student 1, 44", "Student 2, 44", "Student 3, 44", "Student 4, 42", "Student 5, 41",
@@ -1013,11 +1221,16 @@ function updateCounters() {
   } catch (e) {}
 }
 
-const FIELDS = ['f_school','f_address','f_region','f_division','f_teacher','f_class','f_subject','f_term','f_totalItems','f_passing','f_scores','f_items'];
+const FIELDS = [
+  'f_school','f_address','f_region','f_division','f_teacher','f_class','f_subject','f_term',
+  'f_totalItems','f_passing','f_date',
+  'f_prep_name','f_prep_role','f_check_name','f_check_role','f_appr_name','f_appr_role',
+  'f_scores','f_items'
+];
 
 function saveData() {
   try {
-    const data = { _mode: currentMode };
+    const data = { _mode: currentMode, _logo1: logoData.logo1, _logo2: logoData.logo2, _logo3: logoData.logo3 };
     FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
     localStorage.setItem('itemAnalysisData', JSON.stringify(data));
   } catch (e) {}
@@ -1029,6 +1242,12 @@ function loadSavedData() {
     if (!raw) return;
     const data = JSON.parse(raw);
     FIELDS.forEach(id => { const el = document.getElementById(id); if (el && data[id] !== undefined) el.value = data[id]; });
+    
+    // Load Logos
+    logoData.logo1 = data._logo1 || '';
+    logoData.logo2 = data._logo2 || '';
+    logoData.logo3 = data._logo3 || '';
+
     if (data._mode) setMode(data._mode);
   } catch (e) {}
 }
