@@ -62,6 +62,8 @@
   .btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
   .btn-secondary { background:#fff; color:var(--primary); border:1.5px solid var(--border); }
   .btn-secondary:hover { background:#f8fafc; border-color:var(--primary-light); }
+  .btn-accent { background:linear-gradient(135deg,var(--accent),var(--accent-dark)); color:#fff; box-shadow:0 4px 12px rgba(232,168,56,0.3); width:100%; margin-top:10px; }
+  .btn-accent:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(232,168,56,0.4); }
 
   .toolbar { position:sticky; top:0; z-index:100; background:#fff; border-bottom:1px solid var(--border); padding:12px 20px; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin:-30px -20px 20px; }
   .toolbar button { padding:10px 20px; font-size:13px; border-radius:8px; }
@@ -237,7 +239,7 @@
   <div class="input-container">
     <div class="input-header">
       <h1>MPS & Item Analysis Generator</h1>
-      <p>Separate pages for MPS and Item Analysis. Independent data!</p>
+      <p>Separate pages for MPS and Item Analysis. Auto-Divide included!</p>
       <div class="dev-credit-input">
         <span class="dev-label">Project Developer</span>
         <span class="dev-name">JEMMUEL ALON</span>
@@ -307,6 +309,14 @@
         </p>
         <textarea id="f_items" rows="8" placeholder="Digestive tract organ, 25&#10;Digestive process, 29&#10;..."></textarea>
         <div class="counter" id="c_items">Items: 0</div>
+        
+        <!-- AUTO-DIVIDE BUTTON -->
+        <button class="btn-accent" onclick="autoDivideItems()">
+          ⚡ Auto-Divide Items (Kung walang per-item record)
+        </button>
+        <p style="font-size:11px; color:#7f8c8d; margin-top:8px; text-align:center; font-style:italic;">
+          *I-click ito kung total score lang ang na-record mo. Awtomatikong hahatiin ng system ang total points sa lahat ng items para makabuo ng estimation.
+        </p>
       </div>
 
       <div class="btn-row">
@@ -345,11 +355,9 @@
 <div class="help-modal" id="helpModal">
   <div class="help-content">
     <h3>📖 Paano Gamitin</h3>
-    <p>Ngayon, <strong>hiwalay na</strong> ang data ng MPS at Item Analysis. Hindi na sila kailangang mag-match.</p>
-    <h4>MPS Data</h4>
-    <p>Ilagay ang pangalan at score ng estudyante. Makikita ito sa unang page ng report.</p>
-    <h4>Item Analysis Data</h4>
-    <p>Ilagay ang topic at kung ilan ang nakakuha ng tama. Makikita ito sa ikalawang page ng report.</p>
+    <p>Ngayon, <strong>hiwalay na</strong> ang data ng MPS at Item Analysis. May Auto-Divide feature pa!</p>
+    <h4>Auto-Divide Items</h4>
+    <p>Kung hindi mo na-tally ang bawat item, i-click ito. Kukunin ng system ang total score ng lahat ng estudyante at ipapamahagi ito nang pantay-pantay sa lahat ng items.</p>
     <button class="close-btn" onclick="toggleHelp()">Got it!</button>
   </div>
 </div>
@@ -378,10 +386,8 @@ function setMode(mode) {
     document.querySelectorAll('.mode-card').forEach(c => {
       c.classList.toggle('active', c.dataset.mode === mode);
     });
-    
     document.getElementById('mpsDataSection').style.display = (mode === 'item') ? 'none' : 'block';
     document.getElementById('itemDataSection').style.display = (mode === 'mps') ? 'none' : 'block';
-    
     saveData();
   } catch (e) { console.error('setMode error:', e); }
 }
@@ -416,6 +422,64 @@ function parseItemsWithCount(text) {
     }
     return null;
   }).filter(Boolean);
+}
+
+/* NEW FUNCTION: AUTO-DIVIDE ITEMS */
+function autoDivideItems() {
+  try {
+    const scoresRaw = document.getElementById('f_scores').value.trim();
+    const students = parseStudentData(scoresRaw);
+    const totalItems = parseInt(document.getElementById('f_totalItems').value);
+    const itemsRaw = document.getElementById('f_items').value.trim();
+
+    if (!students.length) {
+      showToast('<strong>Walang Student Data!</strong> Mag-input muna ng scores sa Section 4 para may pagbatayan ang auto-divide.', 'error', 5000);
+      return;
+    }
+    if (isNaN(totalItems) || totalItems < 1) {
+      showToast('<strong>Invalid Total Items!</strong> I-check ang Section 3.', 'error', 4000);
+      return;
+    }
+
+    // Get total score
+    const totalScore = students.reduce((sum, s) => sum + s.score, 0);
+    
+    // Calculate base correct per item and remainder
+    const baseCorrect = Math.floor(totalScore / totalItems);
+    const remainder = totalScore % totalItems;
+
+    let correctCounts = [];
+    for (let i = 0; i < totalItems; i++) {
+      if (i < remainder) correctCounts.push(baseCorrect + 1);
+      else correctCounts.push(baseCorrect);
+    }
+
+    // Shuffle to make it look more realistic (hindi puro 15 sa taas at 16 sa baba)
+    correctCounts.sort(() => Math.random() - 0.5);
+
+    // Get existing topics or generate default
+    let topics = [];
+    if (itemsRaw) {
+      topics = itemsRaw.split('\n').map(l => l.trim()).filter(l => l).map(l => {
+        const match = l.match(/^(.+?)\s*[,|\t]\s*\d+\s*$/);
+        return (match ? match[1].trim() : l).replace(/[,\s]+$/, '');
+      });
+    }
+
+    let newItemsText = [];
+    for (let i = 0; i < totalItems; i++) {
+      let topicName = topics[i] || `Item ${i + 1}`;
+      newItemsText.push(`${topicName}, ${correctCounts[i]}`);
+    }
+
+    document.getElementById('f_items').value = newItemsText.join('\n');
+    updateCounters();
+    saveData();
+    
+    showToast(`<strong>Auto-Divide Complete!</strong> Total points (${totalScore}) distributed evenly across ${totalItems} items.`, 'success', 5000);
+  } catch (e) {
+    console.error('autoDivide error:', e);
+  }
 }
 
 function computeStats(scores) {
@@ -497,7 +561,7 @@ function validateInputs() {
   if (currentMode === 'item' || currentMode === 'both') {
     const itemsRaw = document.getElementById('f_items').value.trim();
     const items = parseItemsWithCount(itemsRaw);
-    if (!itemsRaw) errors.push({ field: 'f_items', msg: 'Walang Item Analysis data.' });
+    if (!itemsRaw) errors.push({ field: 'f_items', msg: 'Walang Item Analysis data. Pwede mong i-click ang "Auto-Divide Items".' });
     else if (!items.length) errors.push({ field: 'f_items', msg: 'Hindi mabasa ang items.' });
   }
 
@@ -804,7 +868,6 @@ function buildReportHTML(d) {
     `;
   }
 
-  // Combine them with a page break if both are selected
   if (isMps && isItem) {
     return mpsReportHTML + '<div class="page-break"></div>' + itemReportHTML;
   } else if (isMps) {
@@ -905,7 +968,6 @@ function loadSample() {
   document.getElementById('f_passing').value = 28;
   document.getElementById('f_totalItems').value = 50;
 
-  // PERFECTLY MATCHED SAMPLE DATA (Para hindi kaduda-duda)
   const sampleData = [
     "Student 1, 44", "Student 2, 44", "Student 3, 44", "Student 4, 42", "Student 5, 41",
     "Student 6, 41", "Student 7, 40", "Student 8, 40", "Student 9, 39", "Student 10, 39",
